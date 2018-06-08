@@ -11,7 +11,7 @@ class DslTest extends Specification {
     static final String ideaText = "Be a better programmer!"
     static final String planText = "Commit to github everyday!"
     
-    def "testDslUsage_outputXml"() {
+    def "xml"() {
         given:
         DeadlineMemo.make {
             title titleText
@@ -22,7 +22,7 @@ class DslTest extends Specification {
         }
     }
 
-    def "testDslUsage_outputHtml"() {
+    def "html"() {
         given:
         DeadlineMemo.make {
             title titleText
@@ -33,7 +33,7 @@ class DslTest extends Specification {
         }
     }
 
-    def "testDslUsage_outputText"() {
+    def "text"() {
         given:
         DeadlineMemo.make {
             title titleText
@@ -44,7 +44,7 @@ class DslTest extends Specification {
         }
     }
 
-    def "testDslUsage_outputJson"() {
+    def "json"() {
         given:
         DeadlineMemo.make {
             title titleText
