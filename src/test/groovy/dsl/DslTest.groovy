@@ -1,4 +1,5 @@
-import dsl.DeadlineMemo
+package dsl
+
 import org.xmlunit.builder.DiffBuilder
 import org.xmlunit.builder.Input
 import org.xmlunit.diff.Diff
@@ -8,18 +9,13 @@ import spock.lang.Specification
  */
 class DslTest extends Specification {
     
-    static final String titleText = "IMPORTANT"
-    static final String deadlineText = "2020-01-01"
-    static final String ideaText = "Be a better programmer!"
-    static final String planText = "Commit to github everyday!"
-    
     def "xml"() {
         given:
         String deadlineMemo = DeadlineMemo.make {
-            title titleText
-            deadline deadlineText
-            idea ideaText
-            plan planText
+            title Constants.titleText
+            deadline Constants.deadlineText
+            idea Constants.ideaText
+            plan Constants.planText
             xml
         }
         
@@ -38,10 +34,10 @@ class DslTest extends Specification {
     def "text"() {
         given:
         String deadlineMemo = DeadlineMemo.make {
-            title titleText
-            deadline deadlineText
-            idea ideaText
-            plan planText
+            title Constants.titleText
+            deadline Constants.deadlineText
+            idea Constants.ideaText
+            plan Constants.planText
             text
         }
         
@@ -60,10 +56,10 @@ class DslTest extends Specification {
     def "json"() {
         given:
         String deadlineMemo = DeadlineMemo.make {
-            title titleText
-            deadline deadlineText
-            idea ideaText
-            plan planText
+            title Constants.titleText
+            deadline Constants.deadlineText
+            idea Constants.ideaText
+            plan Constants.planText
             json
         }
         

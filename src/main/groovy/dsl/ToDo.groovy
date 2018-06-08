@@ -2,7 +2,7 @@ package dsl
 /**
  * Created by mtumilowicz on 2018-06-07.
  */
-class Section {
+class ToDo {
     String title
     String body
 }

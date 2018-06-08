@@ -7,7 +7,7 @@ import groovy.xml.MarkupBuilder
  * Created by mtumilowicz on 2018-06-08.
  */
 class DeadlineMemoXmlConverter {
-     static def xml(DeadlineMemo memo) {
+     static String xml(DeadlineMemo memo) {
         def writer = new StringWriter()
         def xml = new MarkupBuilder(writer)
         xml.memo() {

@@ -3,12 +3,14 @@ package dsl
 import dsl.json.DeadlineMemoJsonConverter
 import dsl.text.DeadlineMemoTextConverter
 import dsl.xml.DeadlineMemoXmlConverter
+import groovy.transform.EqualsAndHashCode
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 /**
  * Created by mtumilowicz on 2018-06-07.
  */
+@EqualsAndHashCode
 class DeadlineMemo {
 
     String title
@@ -30,7 +32,7 @@ class DeadlineMemo {
     }
 
     def methodMissing(String methodName, args) {
-        def section = new Section(title: methodName, body: args[0])
+        def section = new ToDo(title: methodName, body: args[0])
         toDo << section
     }
 
@@ -43,6 +45,6 @@ class DeadlineMemo {
     }
 
     String getJson() {
-        DeadlineMemoJsonConverter.json(this).toString()
+        DeadlineMemoJsonConverter.json(this)
     }
 }
