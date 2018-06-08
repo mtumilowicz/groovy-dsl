@@ -32,23 +32,19 @@ class DeadlineMemo {
         toDo << section
     }
 
-    def getXml() {
+    String getXml() {
         doXml(this)
     }
 
-    def getHtml() {
-        doHtml(this)
-    }
-
-    def getText() {
+    String getText() {
         doText(this)
     }
 
-    def getJson() {
+    String getJson() {
         doJson(this)
     }
 
-    private static doJson(DeadlineMemo memo) {
+    private static String doJson(DeadlineMemo memo) {
         JsonBuilder builder = new JsonBuilder()
         builder.memo() {
             title memo.title
@@ -56,48 +52,25 @@ class DeadlineMemo {
             memo.toDo.forEach { "$it.title" "$it.body" }
         }
 
-        println builder
+        builder.toString()
     }
 
-    private static doXml(DeadlineMemo memo) {
+     private static String doXml(DeadlineMemo memo) {
         def writer = new StringWriter()
         def xml = new MarkupBuilder(writer)
         xml.memo() {
             title(memo.title)
             deadline(memo.deadline)
             memo.toDo.forEach { "$it.title"(it.body) }
-        }
-        println writer
+        } 
+         writer.toString()
     }
 
-    private static doHtml(DeadlineMemo memo) {
-        def writer = new StringWriter()
-        def xml = new MarkupBuilder(writer)
-        xml.html() {
-            head {
-                title("Memo")
-            }
-            body {
-                h1("Memo")
-                h3("To: $memo.title")
-                h3("Deadline: $memo.deadline")
-                memo.toDo.forEach {
-                    section ->
-                        p {
-                            b(section.title)
-                            p(section.body)
-                        }
-                }
-            }
-        }
-        println writer
-    }
-
-    private static doText(DeadlineMemo memo) {
-        String template = "Memo\nTo: $memo.title\nDeadline: $memo.deadline \n"
+    private static String doText(DeadlineMemo memo) {
+        String template = "Memo\nTitle: $memo.title\nDeadline: $memo.deadline\n"
         def sectionStrings = ""
-        memo.toDo.forEach { sectionStrings += "$it.title: $it.body \n" }
+        memo.toDo.forEach { sectionStrings += "$it.title: $it.body\n" }
         template += sectionStrings
-        println template
+        template
     }
 }
