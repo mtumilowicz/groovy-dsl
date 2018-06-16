@@ -1,11 +1,11 @@
 # groovy-dsl
-_Reference_: [core DSL from groovy specification](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html)  
+_Reference_: [Groovy specification - core DSLs](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html)  
 _Reference_: [Learning Groovy - Adam L. Davis](https://www.amazon.com/Learning-Groovy-Adam-L-Davis/dp/1484221168)  
 _Reference_: [Groovy in Action](https://www.amazon.com/Groovy-Action-Covers-2-4/dp/1935182447)  
 _Reference_: [DSL - Martin Fowler](https://www.amazon.com/Domain-Specific-Languages-Addison-Wesley-Signature-Fowler/dp/0321712943)  
 
 # Introduction
-Domain-Specific Languages are small languages, focused on a particular 
+**Domain-Specific Languages** are small languages, focused on a particular 
 aspect of a software system. They allow business experts to read or write 
 code without having to be  programming experts.  
 DSLs come in two main forms:
@@ -13,8 +13,7 @@ DSLs come in two main forms:
 language, examples: regular expressions and CSS.
 * **internal** - particular form of `API` in a host general purpose language, often 
 referred to as a fluent interface, examples: `Spock` and `Mockito`.
-
-
+___
 `Groovy` has many features that make it great for writing `DSLs`:
 * [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
 * Parentheses and dots `(.)` are optional.
@@ -47,8 +46,13 @@ println Y.handler {setValue 'test'} // X(test)
 ```
 
 ## Optional parentheses and dots
+In `Groovy` it's possible to omit parentheses and dots
 ```
-class XXX {
+X.resolve {take 10 plus 30 minus 15} // it's same as: new X().take(10).plus(30).minus(15)
+```
+where:
+```
+class X {
     @Delegate
     Integer value
     
@@ -57,19 +61,15 @@ class XXX {
     }
     
     static def resolve(Closure closure) {
-        closure.delegate = new XXX()
+        closure.delegate = new X()
         closure()
     }
 }
 ```
-```
-println XXX.resolve {take 10 plus 30 minus 15} // 55
-```
-}
-
 ## Category, Mixins, Traits
 
 ### Category
+`Groovy` categories are the mechanism to augment classes with new methods.
 ```
 @Category(Integer)
 class X {
@@ -83,8 +83,20 @@ use(X) {
     println 123000020.reverse() // 20000321
 }
 ```
+* Remarks:
+    * During compilation, all methods are transformed to static ones with 
+    an additional self parameter of the type you supply as the annotation 
+    parameter (the default type for the self parameters is `Object` which 
+    might be more broad reaching than you like so it is usually wise to 
+    specify a type). 
+    * Properties invoked using `'this'` references are transformed so that 
+    they are instead invoked on the additional self parameter and not on 
+    the `Category` instance. 
+    * Remember that once the category is applied, the reverse will occur and 
+    we will be back to conceptually having methods on the this references again.
 
 ### Mixins
+`Groovy` mixin is a mechanism to augment classes with new methods **at runtime**.
 ```
 class X {
     static def test(String x) {
@@ -96,8 +108,9 @@ class X {
 String.mixin X
 'mixin'.test() // test mixin
 ```
-Note that static mixins (`@Mixin`) have been deprecated in favour of `traits`.
-
+* Remarks:
+    * static mixins (`@Mixin`) have been deprecated in favour of `traits`.
+    * methods are only visible at runtime
 ### Traits
 `Traits` can be seen as interfaces carrying both default implementations 
 and state.
@@ -122,6 +135,14 @@ trait X {
 ```
 new Y().printName() // X
 ```
+* Remarks:
+    * methods defined in a trait are visible in bytecode:
+    * internally, the trait is represented as an interface 
+    (without default methods) and several helper classes 
+    this means that an object implementing a trait effectively implements 
+    an interface
+    * those methods are visible from Java
+    * they are compatible with type checking and static compilation
 
 ## Overriding Operators
 ```
