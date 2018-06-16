@@ -197,7 +197,36 @@ x.nonExsistingProperty // propertyMissing: nonExsistingProperty
 x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
 ```
 # project
-
+Elaborated above mechanisms used:
+* closures with delegation:
+    ```
+    def static make(@DelegatesTo(strategy = Closure.DELEGATE_ONLY, value = DeadlineMemo) Closure closure) {
+        def code = closure.rehydrate(new DeadlineMemo(), this, this)
+        code.resolveStrategy = Closure.DELEGATE_ONLY
+        code()
+    }
+    ```
+    * `@DelegatesTo` - for type checking
+    * `closure.rehydrate(new DeadlineMemo(), this, this)` - returns a copy of this closure 
+    for which the `delegate`, `owner` and `thisObject` are replaced with the supplied 
+    parameters.
+*  metaprogramming:  
+    we dynamically add sections with custom names and bodies
+    ```
+    def methodMissing(String methodName, args) {
+        def section = new ToDo(title: methodName, body: args[0])
+        toDo << section
+    }    
+    ```
+* optional parentheses:
+    ```
+    DeadlineMemo.make {
+        title 'IMPORTANT'
+        deadline '2020-01-01'
+        idea 'Be a better programmer!'
+        plan 'Commit to github everyday!'
+        xml
+    }
 ## project description
 We provide DSL to create memos and print them in specified format.  
 Memos have structure:  
@@ -209,9 +238,10 @@ Supported formats:
 * json
 * text
 * xml
+
 Exemplary memo looks like:
 ```
-shopping list
+shopping-list
 2018-06-16
 food: butter, bread, meat
 cleaning supplies: washing powder
@@ -236,9 +266,9 @@ other formats: `json`, `xml`.
 
 ## tests
 We provide tests for every format converter:
-* DeadlineMemoJsonConverterTest
-* DeadlineMemoTextConverterTest
-* DeadlineMemoXmlConverterTest
+* `DeadlineMemoJsonConverterTest`
+* `DeadlineMemoTextConverterTest`
+* `DeadlineMemoXmlConverterTest`
 
 And we test DSL itself as well: 
-* DslTest
+* `DslTest`
