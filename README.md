@@ -20,7 +20,7 @@ ___
 `Groovy` has many features that make it great for writing `DSLs`:
 * [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
 * Parentheses and dots `(.)` are optional.
-* Ability to add methods to standard classes using [Category](http://docs.groovy-lang.org/latest/html/api/groovy/lang/Category.html) 
+* Ability to add methods to standard classes using [Category](http://docs.groovy-lang.org/latest/html/api/groovy/lang/Category.html), 
 [Mixins](http://mrhaki.blogspot.com/2013/02/groovy-goodness-apply-mixin-to-object.html) and [Traits](http://docs.groovy-lang.org/next/html/documentation/core-traits.html).
 * The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
 * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
