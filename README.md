@@ -148,7 +148,7 @@ new Y().printName() // X
     * Methods are visible from `Java` and they are compatible with 
     type checking and static compilation.
 
-## overriding Operators
+## overriding operators
 ```
 class ComplexNumber {
     double x
@@ -166,7 +166,7 @@ ComplexNumber result = cn1 + cn2 // (3, 3)
 }
 ```
 
-## metaprogramming (Missing Methods and Properties)
+## metaprogramming (missing methods and properties)
 `Groovy` provides a way to implement functionality at runtime via the methods:
 * `methodMissing(String name, args)` - invoked only in the case of a 
 failed method dispatch when no method can be found for the given name and/or 
