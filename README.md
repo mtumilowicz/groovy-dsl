@@ -1,4 +1,7 @@
 # groovy-dsl
+The main goal of this project is to explore basic features of groovy to produce 
+specific DSL.
+
 _Reference_: [Groovy specification - core DSLs](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html)  
 _Reference_: [Learning Groovy - Adam L. Davis](https://www.amazon.com/Learning-Groovy-Adam-L-Davis/dp/1484221168)  
 _Reference_: [Groovy in Action](https://www.amazon.com/Groovy-Action-Covers-2-4/dp/1935182447)  
@@ -21,7 +24,7 @@ ___
 and [Traits](http://docs.groovy-lang.org/next/html/documentation/core-traits.html).
 * The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading)
 * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
-`propertyMissing` methods.
+`propertyMissing` features.
 
 ## Closured with delegates
 Within `Groovy` you can take a closure as a parameter and then call it using a 
@@ -93,7 +96,8 @@ use(X) {
     they are instead invoked on the additional self parameter and not on 
     the `Category` instance. 
     * Remember that once the category is applied, the reverse will occur and 
-    we will be back to conceptually having methods on the this references again.
+    we will be back to conceptually having methods on the `this` references 
+    again.
 
 ### Mixins
 `Groovy` mixin is a mechanism to augment classes with new methods **at runtime**.
@@ -109,8 +113,8 @@ String.mixin X
 'mixin'.test() // test mixin
 ```
 * Remarks:
-    * static mixins (`@Mixin`) have been deprecated in favour of `traits`.
-    * methods are only visible at runtime
+    * Static mixins (`@Mixin`) have been deprecated in favour of `traits`.
+    * Methods are only visible at runtime.
 ### Traits
 `Traits` can be seen as interfaces carrying both default implementations 
 and state.
@@ -136,13 +140,13 @@ trait X {
 new Y().printName() // X
 ```
 * Remarks:
-    * methods defined in a trait are visible in bytecode:
-    * internally, the trait is represented as an interface 
+    * Methods defined in a `trait` are visible in bytecode.
+    * Internally, the `trait` is represented as an interface 
     (without default methods) and several helper classes 
     this means that an object implementing a trait effectively implements 
-    an interface
-    * those methods are visible from Java
-    * they are compatible with type checking and static compilation
+    an interface.
+    * Methods are visible from `Java` and they are compatible with 
+    type checking and static compilation.
 
 ## Overriding Operators
 ```
@@ -164,9 +168,13 @@ ComplexNumber result = cn1 + cn2 // (3, 3)
 
 ## Metaprogramming (Missing Methods and Properties)
 `Groovy` provides a way to implement functionality at runtime via the methods:
-* methodMissing
-* propertyMissing(String name)
-* propertyMissing(String name, Object value)
+* `methodMissing(String name, args)` - it is only invoked in the case of a 
+failed method dispatch when no method can be found for the given name and/or 
+the given arguments.
+* `propertyMissing(String name)` - is only called when no getter method for 
+the given property can be found at runtime.
+* `propertyMissing(String name, Object value)` - is only called when no setter
+method for the given property can be found at runtime.
 ```
 class X {
     def methodMissing(String name, args) {
