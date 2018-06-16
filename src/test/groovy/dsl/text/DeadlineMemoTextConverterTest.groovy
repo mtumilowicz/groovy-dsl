@@ -5,17 +5,16 @@ import dsl.ToDo
 import spock.lang.Specification
 
 import java.time.LocalDate
-
-import static dsl.Constants.*
 /**
  * Created by mtumilowicz on 2018-06-09.
  */
 class DeadlineMemoTextConverterTest extends Specification {
     def "test text"() {
         given:
-        def toDo = [new ToDo(title: "idea", body: ideaText), new ToDo(title: "plan", body: planText)]
-        def memo = new DeadlineMemo(title: titleText,
-                deadline: LocalDate.parse(deadlineText),
+        def toDo = [new ToDo(title: 'idea', body: 'Be a better programmer!'),
+                    new ToDo(title: 'plan', body: 'Commit to github everyday!')]
+        def memo = new DeadlineMemo(title: 'IMPORTANT',
+                deadline: LocalDate.parse('2020-01-01'),
                 toDo: toDo)
 
         and:

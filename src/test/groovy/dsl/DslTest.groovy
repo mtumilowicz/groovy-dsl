@@ -12,10 +12,10 @@ class DslTest extends Specification {
     def "xml"() {
         given:
         String deadlineMemo = DeadlineMemo.make {
-            title Constants.titleText
-            deadline Constants.deadlineText
-            idea Constants.ideaText
-            plan Constants.planText
+            title 'IMPORTANT'
+            deadline '2020-01-01'
+            idea 'Be a better programmer!'
+            plan 'Commit to github everyday!'
             xml
         }
         
@@ -34,10 +34,10 @@ class DslTest extends Specification {
     def "text"() {
         given:
         String deadlineMemo = DeadlineMemo.make {
-            title Constants.titleText
-            deadline Constants.deadlineText
-            idea Constants.ideaText
-            plan Constants.planText
+            title 'IMPORTANT'
+            deadline '2020-01-01'
+            idea 'Be a better programmer!'
+            plan 'Commit to github everyday!'
             text
         }
         
@@ -56,10 +56,10 @@ class DslTest extends Specification {
     def "json"() {
         given:
         String deadlineMemo = DeadlineMemo.make {
-            title Constants.titleText
-            deadline Constants.deadlineText
-            idea Constants.ideaText
-            plan Constants.planText
+            title 'IMPORTANT'
+            deadline '2020-01-01'
+            idea 'Be a better programmer!'
+            plan 'Commit to github everyday!'
             json
         }
         
