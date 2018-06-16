@@ -229,27 +229,26 @@ Elaborated above mechanisms used:
     }
 ## project description
 We provide DSL to create memos and print them in specified format.  
-Memos have structure:  
-* title
-* deadline-date  
-* any number of arbitrary named sections that have title and body
-
-Supported formats:
-* json
-* text
-* xml
-
-Exemplary memo looks like:
-```
-shopping-list
-2018-06-16
-food: butter, bread, meat
-cleaning supplies: washing powder
-```
+* Memos have structure:  
+    * title
+    * deadline-date  
+    * any number of arbitrary named sections that have title and body
+* Supported formats:
+    * json
+    * text
+    * xml
+* Exemplary memo looks like:
+    ```
+    shopping-list
+    2018-06-16
+    food: butter, bread, meat
+    cleaning supplies: washing powder
+    ```
     
 ## project structure
 * `DeadlineMemo`, `ToDo` - entities
-* `json` / `text` / `xml` packages contains appropriate converters `memo -> specified format`
+* `json` / `text` / `xml` packages containing appropriate 
+converters `memo -> specified format`
 
 ## use cases
 To print memo in xml format:
