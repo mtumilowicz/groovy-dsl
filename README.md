@@ -168,12 +168,12 @@ ComplexNumber result = cn1 + cn2 // (3, 3)
 
 ## Metaprogramming (Missing Methods and Properties)
 `Groovy` provides a way to implement functionality at runtime via the methods:
-* `methodMissing(String name, args)` - it is only invoked in the case of a 
+* `methodMissing(String name, args)` - invoked only in the case of a 
 failed method dispatch when no method can be found for the given name and/or 
 the given arguments.
-* `propertyMissing(String name)` - is only called when no getter method for 
+* `propertyMissing(String name)` - called only when no getter method for 
 the given property can be found at runtime.
-* `propertyMissing(String name, Object value)` - is only called when no setter
+* `propertyMissing(String name, Object value)` - called only when no setter
 method for the given property can be found at runtime.
 ```
 class X {
