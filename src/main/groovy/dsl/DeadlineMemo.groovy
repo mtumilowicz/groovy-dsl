@@ -4,6 +4,7 @@ import dsl.json.DeadlineMemoJsonConverter
 import dsl.text.DeadlineMemoTextConverter
 import dsl.xml.DeadlineMemoXmlConverter
 import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter
  * Created by mtumilowicz on 2018-06-07.
  */
 @EqualsAndHashCode
+@ToString
 class DeadlineMemo {
 
     String title
@@ -37,7 +39,7 @@ class DeadlineMemo {
     }
 
     String getXml() {
-        DeadlineMemoXmlConverter.xml(this).toString()
+        DeadlineMemoXmlConverter.xml(this)
     }
 
     String getText() {
