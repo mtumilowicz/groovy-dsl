@@ -13,7 +13,7 @@ aspect of a software system. They allow business experts to read or write
 code without having to be  programming experts.  
 DSLs come in two main forms:
 * **external** - language that's parsed independently of the host general purpose 
-language, examples: regular expressions and CSS.
+language, examples: `regular expressions` and `CSS`.
 * **internal** - particular form of `API` in a host general purpose language, often 
 referred to as a fluent interface, examples: `Spock` and `Mockito`.
 ___
@@ -22,7 +22,7 @@ ___
 * Parentheses and dots `(.)` are optional.
 * Ability to add methods to standard classes using [Category](http://docs.groovy-lang.org/latest/html/api/groovy/lang/Category.html) 
 and [Traits](http://docs.groovy-lang.org/next/html/documentation/core-traits.html).
-* The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading)
+* The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
 * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
 `propertyMissing` features.
 
@@ -196,4 +196,3 @@ x.nonExsistingMethod "1", "2", "3" // methodMissing: nonExsistingMethod [1, 2, 3
 x.nonExsistingProperty // propertyMissing: nonExsistingProperty
 x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
 ```
-}
