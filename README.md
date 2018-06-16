@@ -5,14 +5,14 @@ _Reference_: [Groovy in Action](https://www.amazon.com/Groovy-Action-Covers-2-4/
 _Reference_: [DSL - Martin Fowler](https://www.amazon.com/Domain-Specific-Languages-Addison-Wesley-Signature-Fowler/dp/0321712943)  
 
 # Introduction
-`DSLs` (Domain-Specific Languages) are small languages, focused on a particular 
+Domain-Specific Languages are small languages, focused on a particular 
 aspect of a software system. They allow business experts to read or write 
 code without having to be  programming experts.  
-DSLs come in two main forms: external and internal:
+DSLs come in two main forms:
 * **external** - language that's parsed independently of the host general purpose 
-language: good examples include regular expressions and CSS.
-* **internal** - particular form of API in a host general purpose language, often 
-referred to as a fluent interface. Spock is a good example.
+language, examples: regular expressions and CSS.
+* **internal** - particular form of `API` in a host general purpose language, often 
+referred to as a fluent interface, examples: `Spock` and `Mockito`.
 
 
 `Groovy` has many features that make it great for writing `DSLs`:
@@ -42,7 +42,6 @@ class Y {
     }
 }
 ```
-and calling:
 ```
 println Y.handler {setValue 'test'} // X(test)
 ```
@@ -63,9 +62,8 @@ class XXX {
     }
 }
 ```
-and calling:
 ```
-println XXX.resolve {take 10 plus 30 plus 20} // 60
+println XXX.resolve {take 10 plus 30 minus 15} // 55
 ```
 }
 
@@ -80,7 +78,6 @@ class X {
     }
 }
 ```
-and calling:
 ```
 use(X) {
     println 123000020.reverse() // 20000321
@@ -95,11 +92,9 @@ class X {
     }
 }
 ```
-and calling:
 ```
-    String.mixin X
-    'print test'.test() // print test
-}
+String.mixin X
+'mixin'.test() // test mixin
 ```
 Note that static mixins (`@Mixin`) have been deprecated in favour of `traits`.
 
@@ -124,11 +119,9 @@ trait X {
     }
 }
 ```
-and calling:
 ```
 new Y().printName() // X
 ```
-}
 
 ## Overriding Operators
 ```
@@ -141,11 +134,10 @@ class ComplexNumber {
     }
 }
 ```
-and calling:
 ```
-    ComplexNumber cn1 = new ComplexNumber(x: 1, y: 1)
-    ComplexNumber cn2 = new ComplexNumber(x: 2, y: 2)
-    ComplexNumber result = cn1 + cn2 // (3, 3)
+ComplexNumber cn1 = new ComplexNumber(x: 1, y: 1)
+ComplexNumber cn2 = new ComplexNumber(x: 2, y: 2)
+ComplexNumber result = cn1 + cn2 // (3, 3)
 }
 ```
 
@@ -169,7 +161,6 @@ class X {
     }
 }
 ```
-and calling:
 ```
 def x = new X()
 x.nonExsistingMethod "1", "2", "3" // methodMissing: nonExsistingMethod [1, 2, 3]
