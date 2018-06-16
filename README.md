@@ -196,3 +196,49 @@ x.nonExsistingMethod "1", "2", "3" // methodMissing: nonExsistingMethod [1, 2, 3
 x.nonExsistingProperty // propertyMissing: nonExsistingProperty
 x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
 ```
+# project
+
+## project description
+We provide DSL to create memos and print them in specified format.  
+Memos have structure:  
+* title
+* deadline-date  
+* any number of arbitrary named sections that have title and body
+
+Supported formats:
+* json
+* text
+* xml
+Exemplary memo looks like:
+```
+shopping list
+2018-06-16
+food: butter, bread, meat
+cleaning supplies: washing powder
+```
+    
+## project structure
+* `DeadlineMemo`, `ToDo` - entities
+* `json` / `text` / `xml` packages contains appropriate converters `memo -> specified format`
+
+## use cases
+To print memo in xml format:
+```
+println DeadlineMemo.make {
+                    title 'any title you like'
+                    deadline '2018-06-16'
+                    subsection-title1 'any body you like'
+                    subsection-title2 'any body you like'
+                    xml
+                }
+```
+other formats: `json`, `xml`.
+
+## tests
+We provide tests for every format converter:
+* DeadlineMemoJsonConverterTest
+* DeadlineMemoTextConverterTest
+* DeadlineMemoXmlConverterTest
+
+And we test DSL itself as well: 
+* DslTest
