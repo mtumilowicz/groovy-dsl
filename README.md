@@ -26,7 +26,7 @@ and [Traits](http://docs.groovy-lang.org/next/html/documentation/core-traits.htm
 * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
 `propertyMissing` features.
 
-## closured with delegates
+## closures with delegates
 Within `Groovy` you can take a closure as a parameter and then call it using a 
 local variable as a delegate.
 ```
