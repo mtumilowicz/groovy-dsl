@@ -7,7 +7,7 @@ _Reference_: [Learning Groovy - Adam L. Davis](https://www.amazon.com/Learning-G
 _Reference_: [Groovy in Action](https://www.amazon.com/Groovy-Action-Covers-2-4/dp/1935182447)  
 _Reference_: [DSL - Martin Fowler](https://www.amazon.com/Domain-Specific-Languages-Addison-Wesley-Signature-Fowler/dp/0321712943)  
 
-# Introduction
+# introduction
 **Domain-Specific Languages** are small languages, focused on a particular 
 aspect of a software system. They allow business experts to read or write 
 code without having to be  programming experts.  
@@ -26,7 +26,7 @@ and [Traits](http://docs.groovy-lang.org/next/html/documentation/core-traits.htm
 * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
 `propertyMissing` features.
 
-## Closured with delegates
+## closured with delegates
 Within `Groovy` you can take a closure as a parameter and then call it using a 
 local variable as a delegate.
 ```
@@ -48,7 +48,7 @@ class Y {
 println Y.handler {setValue 'test'} // X(test)
 ```
 
-## Optional parentheses and dots
+## optional parentheses and dots
 In `Groovy` it's possible to omit parentheses and dots
 ```
 X.resolve {take 10 plus 30 minus 15} // it's same as: new X().take(10).plus(30).minus(15)
@@ -69,9 +69,9 @@ class X {
     }
 }
 ```
-## Category, Mixins, Traits
+## category, mixins, traits
 
-### Category
+### category
 `Groovy` categories are the mechanism to augment classes with new methods.
 ```
 @Category(Integer)
@@ -99,7 +99,7 @@ use(X) {
     we will be back to conceptually having methods on the `this` references 
     again.
 
-### Mixins
+### mixins
 `Groovy` mixin is a mechanism to augment classes with new methods **at runtime**.
 ```
 class X {
@@ -115,7 +115,7 @@ String.mixin X
 * Remarks:
     * Static mixins (`@Mixin`) have been deprecated in favour of `traits`.
     * Methods are only visible at runtime.
-### Traits
+### traits
 `Traits` can be seen as interfaces carrying both default implementations 
 and state.
 
@@ -148,7 +148,7 @@ new Y().printName() // X
     * Methods are visible from `Java` and they are compatible with 
     type checking and static compilation.
 
-## Overriding Operators
+## overriding Operators
 ```
 class ComplexNumber {
     double x
@@ -166,7 +166,7 @@ ComplexNumber result = cn1 + cn2 // (3, 3)
 }
 ```
 
-## Metaprogramming (Missing Methods and Properties)
+## metaprogramming (Missing Methods and Properties)
 `Groovy` provides a way to implement functionality at runtime via the methods:
 * `methodMissing(String name, args)` - invoked only in the case of a 
 failed method dispatch when no method can be found for the given name and/or 
