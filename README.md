@@ -246,9 +246,10 @@ We provide DSL to create memos and print them in specified format.
     ```
     
 ## project structure
-* `DeadlineMemo`, `ToDo` - entities
-* `json` / `text` / `xml` packages containing appropriate 
+* `DeadlineMemo`, `ToDo` - entities.
+* `json` / `text` / `xml` packages containing appropriate .
 converters `memo -> specified format`
+* Full tests.
 
 ## use cases
 To print memo in xml format:
