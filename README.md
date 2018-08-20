@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/groovy-dsl.svg?branch=master)](https://travis-ci.com/mtumilowicz/groovy-dsl)
+
 # groovy-dsl
 The main goal of this project is to explore basic features of groovy to produce 
 specific DSL.
